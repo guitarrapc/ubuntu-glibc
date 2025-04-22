@@ -13,9 +13,12 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: apt-get
+        env:
+          DEBIAN_FRONTEND: noninteractive
         run: |
           apt-get update
-          apt-get install -y unzip curl git autoconf build-essential ca-certificates
+          apt-get install -y unzip curl git autoconf build-essential ca-certificates tzdata
+      # follow https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&pivots=os-linux-ubuntu-2004#register-the-ubuntu-net-backports-package-repository
       - name: apt-get (.NET)
         run: |
           apt-get install -y libicu66
