@@ -15,7 +15,7 @@ jobs:
       - name: apt-get
         run: |
           apt-get update
-          apt-get install -y unzip curl git autoconf build-essential ca-certificates
+          apt-get install -y unzip curl git autoconf build-essential ca-certificates libicu-dev
       - name: check glibc version
         run: ldd --version
       - name: default working directory
