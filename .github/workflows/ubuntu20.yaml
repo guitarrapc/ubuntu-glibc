@@ -29,3 +29,4 @@ jobs:
           dotnet-version: '9.0.x'
       - name: check dotnet version
         run: dotnet --list-sdks
+      - uses: actions-rust-lang/setup-rust-toolchain@9399c7bb15d4c7d47b27263d024f0a4978346ba4 # v1.11.0
