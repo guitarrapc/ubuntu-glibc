@@ -11,7 +11,13 @@ jobs:
       # Needs to lock glibc version to 2.31, ubuntu 20.04 has glibc 2.31
       image: ubuntu:20.04
     timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: /foo
     steps:
+      - name: apt-get
+        run: |
+          echo foo
       - name: apt-get
         env:
           DEBIAN_FRONTEND: noninteractive
