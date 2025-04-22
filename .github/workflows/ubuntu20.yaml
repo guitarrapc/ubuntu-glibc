@@ -1,0 +1,20 @@
+name: ubuntu-20.04
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    container:
+      # Needs to lock glibc version to 2.31, ubuntu 20.04 has glibc 2.31
+      image: ubuntu:20.04
+    timeout-minutes: 30
+    steps:
+      - name: apt-get
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip autoconf build-essential ca-certificates curl
+      - name: check glibc version
+        run: ldd --version
