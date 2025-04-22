@@ -18,5 +18,8 @@ jobs:
           apt-get install -y unzip curl git autoconf build-essential ca-certificates libicu-dev
       - name: check glibc version
         run: ldd --version
-      - name: default working directory
-        run: pwd
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          dotnet-version: '9.0.x'
+      - name: check dotnet version
+        run: dotnet --list-sdks
