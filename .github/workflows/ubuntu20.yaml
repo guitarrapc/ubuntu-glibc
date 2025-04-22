@@ -13,8 +13,24 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: apt-get
+        env:
+          DEBIAN_FRONTEND: noninteractive
         run: |
-          sudo apt-get update
-          sudo apt-get install -y unzip autoconf build-essential ca-certificates curl
+          apt-get update
+          apt-get install -y unzip curl git autoconf build-essential ca-certificates tzdata
+      # follow https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&pivots=os-linux-ubuntu-2004#register-the-ubuntu-net-backports-package-repository
+      - name: apt-get (.NET)
+        run: |
+          apt-get install -y libicu66
       - name: check glibc version
         run: ldd --version
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          dotnet-version: '9.0.x'
+      - name: check dotnet version
+        run: dotnet --list-sdks
+      - uses: actions-rust-lang/setup-rust-toolchain@9399c7bb15d4c7d47b27263d024f0a4978346ba4 # v1.11.0
+      - name: check rutst version
+        run: rustc --version
+      - name: check cargo version
+        run: cargo --version
