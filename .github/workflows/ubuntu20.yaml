@@ -6,10 +6,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     container:
       # Needs to lock glibc version to 2.31, ubuntu 20.04 has glibc 2.31
       image: ubuntu:20.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
       - name: apt-get
